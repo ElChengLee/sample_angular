@@ -1,0 +1,35 @@
+<section class="container">
+    <div class="shopping" *ngIf="products.length == 0">
+      <button type="button" (click)="ShoppingNow()">Shopping now</button>
+    </div>
+    <div *ngIf="products.length > 0">
+      <div class="promotion">
+        <label for="promo-code">Have A Promo Code?</label>
+        <input type="text" id="promo-code" [(ngModel)]="promoCode" />
+        <button type="button" (click)="calculateDiscount()"></button>
+      </div>
+  
+      <div class="summary">
+        <ul>
+          <li>
+            Subtotal <span>{{ subTotal | currency: "VND" }}</span>
+          </li>
+          <li>
+            Tax <span>{{ 0.1 * (subTotal ?? 0) | currency: "VND" }}</span>
+          </li>
+          <li>
+            Discount <span>{{ totalDiscount | currency: "VND" }}</span>
+          </li>
+          <li class="total">
+            Total
+            <span>{{ 1.1 * (subTotal ?? 0) - totalDiscount | currency: "VND" }}</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="checkout">
+        <button type="button">Submit</button>
+      </div>
+    </div>
+  </section>
+  
